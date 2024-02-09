@@ -1,8 +1,8 @@
 import { Router } from "express";
-import { helloWorld } from "../controllers/photo.controller";
+import { createPhoto, getPhotos } from "../controllers/photo.controller";
 
 const router = Router();
 
-router.route("/").get(helloWorld);
+router.route("/photos").post(createPhoto).get(getPhotos);
 
 export default router;
