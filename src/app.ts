@@ -10,6 +10,7 @@ app.set("port", process.env.port || 4000);
 
 // middleware
 app.use(morgan("dev"));
+app.use(express.json());
 
 // routes
 app.use("/api", indexRoutes);
