@@ -4,6 +4,7 @@ import {
   deletePhoto,
   getPhoto,
   getPhotos,
+  updatePhoto,
 } from "../controllers/photo.controller";
 import multer from "../libs/multer";
 
@@ -14,6 +15,6 @@ router
   .post(multer.single("image"), createPhoto)
   .get(getPhotos);
 
-router.route("/photos/:id").get(getPhoto).delete(deletePhoto);
+router.route("/photos/:id").get(getPhoto).delete(deletePhoto).put(updatePhoto);
 
 export default router;

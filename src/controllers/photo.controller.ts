@@ -56,3 +56,21 @@ export async function deletePhoto(
 
   return res.json({ message: "Photo deleted", photo: foundPhoto });
 }
+
+export async function updatePhoto(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  const { id } = req.params;
+  const { title, description } = req.body;
+  const updatedPhoto = await Photo.findByIdAndUpdate(
+    id,
+    {
+      title,
+      description,
+    },
+    { new: true }
+  );
+
+  return res.json({ photo: updatedPhoto });
+}
