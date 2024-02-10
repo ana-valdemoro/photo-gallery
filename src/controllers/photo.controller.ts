@@ -1,5 +1,7 @@
 import { Request, Response } from "express";
 import Photo from "../models/Photo";
+import path from "path";
+import fs from "fs-extra";
 
 export async function getPhotos(
   req: Request,
@@ -39,4 +41,18 @@ export async function getPhoto(req: Request, res: Response): Promise<Response> {
   const foundPhoto = await Photo.findById(id);
 
   return res.json(foundPhoto);
+}
+
+export async function deletePhoto(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  const { id } = req.params;
+
+  const foundPhoto = await Photo.findByIdAndDelete(id);
+  if (foundPhoto) {
+    await fs.unlink(path.resolve(foundPhoto.imagePath));
+  }
+
+  return res.json({ message: "Photo deleted", photo: foundPhoto });
 }

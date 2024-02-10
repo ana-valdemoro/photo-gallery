@@ -1,6 +1,7 @@
 import { Router } from "express";
 import {
   createPhoto,
+  deletePhoto,
   getPhoto,
   getPhotos,
 } from "../controllers/photo.controller";
@@ -13,5 +14,6 @@ router
   .post(multer.single("image"), createPhoto)
   .get(getPhotos);
 
-router.route("/photos/:id").get(getPhoto);
+router.route("/photos/:id").get(getPhoto).delete(deletePhoto);
+
 export default router;
