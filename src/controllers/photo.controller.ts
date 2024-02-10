@@ -5,6 +5,6 @@ export function getPhotos(req: Request, res: Response) {
 }
 
 export function createPhoto(req: Request, res: Response) {
-  console.log("saving photo");
+  console.log("saving photo", req.body);
   return res.json({ message: "Photo successfully saved" });
 }
