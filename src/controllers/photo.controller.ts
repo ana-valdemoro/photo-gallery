@@ -1,11 +1,18 @@
 import { Request, Response } from "express";
 import Photo from "../models/Photo";
 
-export function getPhotos(req: Request, res: Response) {
-  return res.json({ message: "Get All photos" });
+export async function getPhotos(
+  req: Request,
+  res: Response
+): Promise<Response> {
+  const photosArray = await Photo.find();
+  return res.json(photosArray);
 }
 
-export async function createPhoto(req: Request, res: Response) {
+export async function createPhoto(
+  req: Request,
+  res: Response
+): Promise<Response> {
   const { title, description } = req.body;
 
   if (req === undefined || req.file === undefined)
