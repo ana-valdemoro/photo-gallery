@@ -12,5 +12,5 @@ interface IPhoto extends Document {
   imagePath: string;
 }
 
-// Obeys the mode to match the structure
+// Obeys the model to match the structure
 export default model<IPhoto>("Photo", schema);
