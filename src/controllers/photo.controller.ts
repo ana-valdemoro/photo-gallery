@@ -33,3 +33,10 @@ export async function createPhoto(
   console.log("saving photo", photo);
   return res.json({ message: "Photo successfully saved", photo });
 }
+
+export async function getPhoto(req: Request, res: Response): Promise<Response> {
+  const { id } = req.params;
+  const foundPhoto = await Photo.findById(id);
+
+  return res.json(foundPhoto);
+}
